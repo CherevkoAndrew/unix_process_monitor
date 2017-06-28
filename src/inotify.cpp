@@ -49,6 +49,7 @@ void Inotify::watch () {
 }
 
 void Inotify::handleChange(struct inotify_event* event) {
+    // TODO: call listener and pass process id as parameter
     if ( event->mask & IN_CREATE ) {
         if ( event->mask & IN_ISDIR ) {
           printf( "The directory %s was created.\n", event->name );       
@@ -74,3 +75,8 @@ void Inotify::handleChange(struct inotify_event* event) {
         }
     }
 };
+
+void setListener(void (*f)(int pid)) {
+    // Как-то так, пока не проверял
+    this->callback = f;
+}

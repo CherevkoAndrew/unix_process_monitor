@@ -2,9 +2,10 @@
 
 class Process {
     public:
-        ProcessObserver(int id);
+        Process(int id);
+        ~Process();
 
-        int getProcessId();
+        const int getProcessId();
         void update();
 
     private:

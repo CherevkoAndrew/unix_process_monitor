@@ -38,10 +38,14 @@ Process::Process(int id) {
 
 }
 
-int Process::getProcessId() {
+Process::~Process() {
+    delete this->shot;
+}
+
+const int Process::getProcessId() {
     return this->pid;
 }
 
 void Process::update() {
-
+// TODO: read stat file for this process and update data
 }

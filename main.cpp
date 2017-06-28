@@ -1,19 +1,22 @@
 #include <iostream>
 
-#include "includes/inotify.h"
 #include "includes/process_observer.h"
+#include "includes/abstract_logger.h"
+#include "includes/cli_logger.h"
+#include "includes/remote_logger.h"
 
 int main()
 {
-    // Inotify fw = Inotify((char*)"./file");
+    // TODO: сраспараллелить блокирующие операции
+    ProcessObserver po();
 
-    // while (1) {
-    //     fw.watch();
-    // } 
+    AbstractLogger* log1 = new CliLogger();
+    AbstractLogger* log2 = new RemoteLogger();
 
-    ProcessObserver po(4326);
+    po.addLogger(log1);
+    po.addlogger(log2);
 
-    std::cout << po.getProcessId();
+    po.run();
 
     std::cin.get();
 
